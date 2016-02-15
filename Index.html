@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link href="Images/favicon.ico" rel="icon" type="image/x-icon" />
+    <script src="./js/controller.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WiFi Spots in Antwerpen</title>
+</head>
+
+<body id="home" ng-app="projectwebframeworks" ng-controller="myController">
+
+    <section class="container">
+
+        <secton class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Open Wifi Hotspots</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home - Locaties op map</a></li>
+                </ul>
+            </div>
+        </secton>
+
+        <div class="content row">
+            <h2>Google maps</h2>
+            <section id="map-container" class="col-lg-20">
+                <div id="map" style="width: 100%; height:380px;" ></div>
+            </section>
+
+        </div>
+        
+        <div class="list-group" style="height:600px; overflow:auto;">
+            <table class="table table-inverse" ng-repeat="spots in wifispots.data.data">
+                <tr>
+                    <th><h3>{{ spots.locatie }}</h3>
+                    <p>{{ spots.straat }} {{ spots.huisnr }}</p>
+                    <p>{{ spots.gemeente }}</p>
+                    <p>{{ spots.id }}</p>
+                    <input type="button" ng-click="AddToMap(spots.point_lat, spots.point_lng);" value="Show on map"></th>
+                </tr>
+            </table>
+        </div>
+        
+    </section>
+</body>
+
+</HTML>
